@@ -137,7 +137,7 @@ const Navbar = ({ links }: NavbarProps) => {
                           <Popover.Panel className="absolute z-10 mt-3 w-56 transform px-2 sm:px-0 left-0">
                             <div className="overflow-hidden rounded-lg shadow-lg">
                               <div className="relative grid gap-1 bg-dark-blue p-2">
-                                {item.children.map((subItem) => (
+                                {item.children && item.children.length > 0 && item.children.map((subItem) => (
                                   <Link
                                     key={subItem.name}
                                     href={subItem.href}
@@ -247,7 +247,7 @@ const Navbar = ({ links }: NavbarProps) => {
                         <div className="py-2">
                           <div className="px-4 py-2 text-base font-medium text-white">{item.name}</div>
                           <div className="mt-1 pl-4 border-l border-gray-600 ml-4 space-y-1">
-                            {item.children.map((subItem) => (
+                            {item.children && item.children.length > 0 && item.children.map((subItem) => (
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}

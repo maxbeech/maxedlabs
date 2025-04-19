@@ -4,89 +4,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaCode, FaMobileAlt, FaChartLine, FaExternalLinkAlt, FaBriefcase } from 'react-icons/fa';
+import { FaArrowRight, FaCode, FaMobileAlt, FaChartLine, FaExternalLinkAlt, FaBriefcase, FaRegWindowRestore } from 'react-icons/fa';
+import { getCaseStudies } from '@/data/case-studies';
 
 export default function CaseStudiesPage() {
   const [filter, setFilter] = useState('all');
   
-  // Case study data
-  const caseStudies = [
-    {
-      id: 'techfusion',
-      title: 'TechFusion Redesign',
-      description: 'A complete website redesign for a tech startup that increased conversions by 43% and improved user engagement metrics across the board.',
-      category: 'website',
-      type: 'Live Site',
-      image: '/media/case-study-1.jpg',
-      icon: <FaCode className="text-xl" />,
-      color: 'brand-green',
-      link: 'https://techfusion-example.com'
-    },
-    {
-      id: 'greenleaf',
-      title: 'GreenLeaf Mobile App',
-      description: 'Native iOS and Android app development for a sustainability-focused business that streamlined customer interactions and boosted retention.',
-      category: 'app',
-      type: 'Portfolio',
-      image: '/media/case-study-2.jpg',
-      icon: <FaMobileAlt className="text-xl" />,
-      color: 'teal',
-      link: null
-    },
-    {
-      id: 'fitconnect',
-      title: 'FitConnect Marketing Campaign',
-      description: 'Multi-channel digital marketing strategy resulting in 78% growth in organic traffic and a 32% increase in qualified leads.',
-      category: 'marketing',
-      type: 'Live Site',
-      image: '/media/case-study-3.jpg',
-      icon: <FaChartLine className="text-xl" />,
-      color: 'magenta',
-      link: 'https://fitconnect-example.com'
-    },
-    {
-      id: 'alpine',
-      title: 'Alpine Luxury Website',
-      description: 'Premium e-commerce website for a luxury goods brand, featuring custom animations and a seamless checkout experience.',
-      category: 'website',
-      type: 'Live Site',
-      image: '/media/case-study-4.jpg',
-      icon: <FaCode className="text-xl" />,
-      color: 'brand-green',
-      link: 'https://alpine-example.com'
-    },
-    {
-      id: 'travelbuddy',
-      title: 'TravelBuddy App',
-      description: 'Travel planning app with personalized recommendations, itinerary management, and social sharing features.',
-      category: 'app',
-      type: 'Portfolio',
-      image: '/media/case-study-5.jpg',
-      icon: <FaMobileAlt className="text-xl" />,
-      color: 'teal',
-      link: null
-    },
-    {
-      id: 'harvest',
-      title: 'Harvest SEO Campaign',
-      description: 'Comprehensive SEO strategy for an agricultural supplier that increased organic search visibility by 156% in 6 months.',
-      category: 'marketing',
-      type: 'Live Site',
-      image: '/media/case-study-6.jpg',
-      icon: <FaChartLine className="text-xl" />,
-      color: 'magenta',
-      link: 'https://harvest-example.com'
-    }
-  ];
-  
-  // Filter case studies based on selected filter
-  const filteredCaseStudies = filter === 'all' 
-    ? caseStudies 
-    : caseStudies.filter(study => {
-        if (filter === 'live') return study.type === 'Live Site';
-        if (filter === 'portfolio') return study.type === 'Portfolio';
-        return study.category === filter;
-      });
+  // Get filtered case studies from our data source
+  const filteredCaseStudies = getCaseStudies(filter);
   
   return (
     <div className="bg-charcoal text-white min-h-screen">
@@ -136,6 +61,13 @@ export default function CaseStudiesPage() {
                 Apps
               </button>
               <button 
+                onClick={() => setFilter('webapp')} 
+                className={`px-4 py-2 rounded-md transition-all ${filter === 'webapp' ? 'bg-brand-green text-charcoal' : 'bg-charcoal-light hover:bg-gray-700'}`}
+              >
+                <FaRegWindowRestore className="inline mr-2" />
+                Web Apps
+              </button>
+              <button 
                 onClick={() => setFilter('marketing')} 
                 className={`px-4 py-2 rounded-md transition-all ${filter === 'marketing' ? 'bg-magenta text-charcoal' : 'bg-charcoal-light hover:bg-gray-700'}`}
               >
@@ -177,7 +109,16 @@ export default function CaseStudiesPage() {
                   <div className="gradient-border p-0.5 rounded-xl overflow-hidden transform transition-transform duration-500 group-hover:scale-[1.02]">
                     <div className="bg-charcoal-light rounded-xl overflow-hidden">
                       <div className="relative aspect-video w-full overflow-hidden">
-                        {/* Project image - would be actual images in production */}
+                        {/* Project image */}
+                        {study.image && (
+                          <Image 
+                            src={study.image}
+                            alt={study.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover"
+                          />
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-charcoal opacity-80"></div>
                         <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-60"></div>
                         <div className="absolute inset-0 flex items-center justify-center">
