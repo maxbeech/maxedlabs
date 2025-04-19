@@ -1,80 +1,91 @@
-# Grafton Tennis and Squash Club Website
+# MaxedLabs Website
 
-A modern, responsive website for Grafton Tennis and Squash Club, established in 1888.
+A modern, avant-garde website for MaxedLabs, an AI-powered digital agency that maximizes business sales through cutting-edge digital solutions.
 
 ## Features
 
-- Modern, responsive design optimized for all devices
-- SEO-friendly structure
-- Information about tennis and squash facilities
-- Coaching program details
-- Membership information
-- Club news and events
-- Contact information
+- Modern, asymmetrical layouts with dynamic animations
+- Premium, non-template aesthetic design
+- Responsive across all device sizes
+- High performance with optimized images and animations
+- SEO-friendly markup and structure
+- Dynamic sitemap generation
 
 ## Technologies Used
 
-- Next.js - React framework
-- TypeScript - Type safety
-- Tailwind CSS - Styling
-- Vercel - Hosting and deployment
+- Next.js 14 (React framework)
+- TypeScript
+- Tailwind CSS for styling
+- Framer Motion for animations
+- Headless UI for accessible UI components
+- React Icons for iconography
 
 ## Getting Started
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+### Prerequisites
 
-## Image Handling
+- Node.js (v18 or newer recommended)
+- npm or yarn
 
-The website uses Next.js Image Optimization for efficient image loading and delivery:
+### Installation
 
-### Local Images
-
-Images are stored in the `/public/images` directory. These images are:
-- Automatically optimized by Next.js
-- Served with proper formats and sizes based on the client device
-- Lazy-loaded for better performance
-
-### Adding New Images
-
-To add new images to the website:
-
-1. Place image files in the `/public/images` directory
-2. Reference them in components using the path `/images/your-image.jpg`
-3. Use the Next.js Image component for optimal delivery:
-
-```jsx
-import Image from 'next/image';
-
-<Image 
-  src="/images/example.jpg" 
-  alt="Description" 
-  width={800} 
-  height={600} 
-  className="object-cover" 
-/>
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/maxedlabs.git
+cd maxedlabs
 ```
 
-### Admin Interface
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-For content managers, we've created a simple admin interface at `/admin` that demonstrates how images can be uploaded and managed. In a production environment, this would be expanded with authentication and more robust image management capabilities.
+3. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the website.
+
+## Project Structure
+
+- `/src/app` - Next.js app router pages and layouts
+- `/src/components` - React components organized by feature/functionality
+- `/src/components/layout` - Layout components like headers and footers
+- `/src/components/ui` - Reusable UI components
+- `/public/media` - Static assets (images, icons, etc.)
 
 ## Deployment
 
-The website is deployed to Vercel for optimal performance:
+This site is set up to be deployed with Vercel:
 
-1. Push changes to the GitHub repository
-2. Vercel automatically builds and deploys the site
-3. Visit the live site at [https://grafton-tennis-squash.vercel.app](https://grafton-tennis-squash.vercel.app)
+```bash
+npm run build
+# or
+vercel deploy
+```
+
+## Adding/Modifying Content
+
+To add or modify content:
+
+1. For adding new pages, create files in the appropriate directories under `/src/app`
+2. Update the `siteLinks` array in `/src/app/layout.tsx` to include new pages in navigation and sitemap
+3. Images should be placed in the `/public/media` directory
+
+## About MaxedLabs
+
+MaxedLabs is a digital agency that maximizes business sales through:
+- Website development
+- App development
+- Digital marketing
+
+All services are powered by Athenic AI, which provides autonomous updates and content creation.
 
 ## License
 
-All rights reserved. This site was created for Grafton Tennis and Squash Club. 
+Copyright © MaxedLabs, all rights reserved. 

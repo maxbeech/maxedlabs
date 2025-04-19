@@ -2,9 +2,25 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaFacebookF, FaInstagram, FaPinterestP, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaPinterestP, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaTwitter, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 
-export default function Footer() {
+type NavLink = {
+  name: string;
+  href: string;
+  children?: NavLink[];
+};
+
+type FooterProps = {
+  links: NavLink[];
+  utilityLinks: NavLink[];
+};
+
+const Footer = ({ links, utilityLinks }: FooterProps) => {
+  const mainLinks = links.filter(link => 
+    link.name !== 'Home' && 
+    link.name !== 'Contact'
+  );
+
   const currentYear = new Date().getFullYear();
   
   const footerAnimation = {
@@ -32,184 +48,130 @@ export default function Footer() {
   });
 
   return (
-    <footer className="bg-primary text-white">
-      <div className="container mx-auto px-4">
-        {/* Main footer content */}
-        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Column 1: About */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={footerAnimation}
-          >
-            <h3 className="text-xl font-serif font-medium mb-6">Bookham Kitchens</h3>
-            <p className="text-gray-300 mb-4">
-              Family-run kitchen design and installation specialists in Surrey, providing bespoke solutions tailored to your needs.
+    <footer className="bg-brand-blue text-white relative overflow-hidden">
+      {/* Abstract shape decoration */}
+      <div className="absolute top-0 left-0 opacity-10 w-1/3">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#82D09B" d="M37.9,-65.5C47.4,-56.3,53,-43.1,60.5,-30.1C68,-17.2,77.5,-4.6,77.7,8.4C77.9,21.4,68.8,34.7,58.1,44.9C47.3,55.2,34.9,62.3,21.1,68.2C7.2,74.1,-8.1,78.7,-21.4,74.9C-34.8,71.1,-46.1,58.9,-56.4,46.1C-66.7,33.3,-75.9,19.9,-77.5,5.3C-79.1,-9.3,-73.2,-24.9,-63.3,-35.8C-53.5,-46.7,-39.8,-52.8,-27.1,-60.4C-14.4,-68,-7.2,-77,2.7,-81.3C12.7,-85.6,25.4,-85.1,37.9,-65.5Z" transform="translate(100 100)" />
+        </svg>
+      </div>
+      <div className="absolute bottom-0 right-0 opacity-10 w-1/3">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#3FBFC0" d="M36.3,-58.8C46.1,-50.4,52.5,-38.5,59.6,-25.8C66.7,-13.1,74.3,0.5,74.4,14.3C74.5,28.2,67,42.3,55.7,51.6C44.4,60.9,29.3,65.3,14.2,68.5C-0.9,71.7,-16,73.5,-29.9,69.6C-43.9,65.7,-56.7,56,-63.9,43C-71.1,29.9,-72.8,13.5,-72.5,-2.9C-72.2,-19.4,-70,-36,-60.9,-47.4C-51.9,-58.8,-36,-65.1,-21.2,-68.7C-6.4,-72.3,7.3,-73.3,19.9,-70.1C32.4,-67,44.8,-59.6,36.3,-58.8Z" transform="translate(100 100)" />
+        </svg>
+      </div>
+      
+      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+          {/* Company info and description */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 rounded-md bg-gradient-primary animate-gradient bg-[length:200%_200%]"></div>
+              <span className="text-xl font-bold">Maxed<span className="text-brand-green">Labs</span></span>
+            </div>
+            <p className="text-gray-300 mb-6 max-w-md">
+              We maximize business sales through cutting-edge digital solutions, 
+              combining website development, app development, and data-driven 
+              marketing - all supercharged by Athenic AI.
             </p>
-            <div className="flex space-x-4 mt-6">
+            <div className="flex space-x-4">
               <a 
-                href="https://facebook.com" 
+                href="https://twitter.com/maxedlabs" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full"
+                className="bg-charcoal p-3 rounded-full text-brand-green hover:bg-brand-green hover:text-charcoal transition-colors duration-300"
+                aria-label="Twitter"
               >
-                <FaFacebookF className="h-4 w-4" />
+                <FaTwitter className="h-5 w-5" />
               </a>
               <a 
-                href="https://instagram.com" 
+                href="https://linkedin.com/company/maxedlabs" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full"
+                className="bg-charcoal p-3 rounded-full text-brand-green hover:bg-brand-green hover:text-charcoal transition-colors duration-300"
+                aria-label="LinkedIn"
               >
-                <FaInstagram className="h-4 w-4" />
+                <FaLinkedinIn className="h-5 w-5" />
               </a>
               <a 
-                href="https://pinterest.com" 
+                href="https://github.com/maxedlabs" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full"
+                className="bg-charcoal p-3 rounded-full text-brand-green hover:bg-brand-green hover:text-charcoal transition-colors duration-300"
+                aria-label="GitHub"
               >
-                <FaPinterestP className="h-4 w-4" />
+                <FaGithub className="h-5 w-5" />
               </a>
             </div>
-          </motion.div>
+          </div>
           
-          {/* Column 2: Services */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={footerAnimationDelayed(0.2)}
-          >
-            <h3 className="text-xl font-serif font-medium mb-6">Services</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/kitchens/fitted" className="text-gray-300 hover:text-accent transition-colors">
-                  Fitted Kitchens
-                </Link>
-              </li>
-              <li>
-                <Link href="/kitchens/replacement-doors" className="text-gray-300 hover:text-accent transition-colors">
-                  Replacement Doors
-                </Link>
-              </li>
-              <li>
-                <Link href="/kitchens/cabinet-spray-painting" className="text-gray-300 hover:text-accent transition-colors">
-                  Cabinet Spray Painting
-                </Link>
-              </li>
-              <li>
-                <Link href="/home-living/bedroom-cabinets" className="text-gray-300 hover:text-accent transition-colors">
-                  Bedroom Cabinets
-                </Link>
-              </li>
-              <li>
-                <Link href="/home-living/home-office" className="text-gray-300 hover:text-accent transition-colors">
-                  Home Office
-                </Link>
-              </li>
-              <li>
-                <Link href="/building-services/kitchen-installation" className="text-gray-300 hover:text-accent transition-colors">
-                  Kitchen Installation
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-          
-          {/* Column 3: Quick Links */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={footerAnimationDelayed(0.3)}
-          >
-            <h3 className="text-xl font-serif font-medium mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/portfolio" className="text-gray-300 hover:text-accent transition-colors">
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-accent transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-gray-300 hover:text-accent transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-300 hover:text-accent transition-colors">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy" className="text-gray-300 hover:text-accent transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-of-service" className="text-gray-300 hover:text-accent transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-          
-          {/* Column 4: Contact */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={footerAnimationDelayed(0.4)}
-          >
-            <h3 className="text-xl font-serif font-medium mb-6">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <FaMapMarkerAlt className="h-5 w-5 text-accent mr-3 mt-1" />
-                <span className="text-gray-300">
-                  25 Church Road, Great Bookham<br />
-                  Leatherhead, Surrey<br />
-                  KT23 3PG
-                </span>
-              </li>
-              <li className="flex items-center">
-                <FaPhoneAlt className="h-4 w-4 text-accent mr-3" />
-                <a href="tel:+441932391183" className="text-gray-300 hover:text-accent transition-colors">
-                  01932 391183
-                </a>
-              </li>
-              <li className="flex items-center">
-                <FaEnvelope className="h-4 w-4 text-accent mr-3" />
-                <a href="mailto:sales@bookhamkitchens.co.uk" className="text-gray-300 hover:text-accent transition-colors">
-                  sales@bookhamkitchens.co.uk
-                </a>
-              </li>
-            </ul>
-            <div className="mt-6">
-              <h4 className="text-sm font-medium mb-2">Opening Hours</h4>
-              <p className="text-gray-300 text-sm">
-                Monday - Friday: 9:00am - 5:30pm<br />
-                Saturday: 9:00am - 4:00pm<br />
-                Sunday: Closed
-              </p>
+          {/* Navigation Links - dynamically from site structure */}
+          {mainLinks.map((category, index) => (
+            <div key={category.name}>
+              <h3 className="text-lg font-semibold mb-4 text-brand-green">{category.name}</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href={category.href} className="text-gray-300 hover:text-brand-green transition-colors duration-300 custom-underline">
+                    {category.name}
+                  </Link>
+                </li>
+                {category.children?.map((subcategory) => (
+                  <li key={subcategory.name}>
+                    <Link href={subcategory.href} className="text-gray-300 hover:text-brand-green transition-colors duration-300 custom-underline">
+                      {subcategory.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </motion.div>
+          ))}
+          
+          {/* Contact Information */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-brand-green">Contact</h3>
+            <ul className="space-y-3">
+              <li className="text-gray-300">
+                <span className="font-medium text-white">Email:</span> hello@maxedlabs.com
+              </li>
+              <li className="text-gray-300">
+                <span className="font-medium text-white">Phone:</span> +44 20 1234 5678
+              </li>
+              <li className="text-gray-300">
+                <span className="font-medium text-white">Location:</span> London, UK
+              </li>
+              <li className="mt-6">
+                <Link 
+                  href="/contact" 
+                  className="inline-flex items-center text-brand-green hover:text-white transition-colors duration-300"
+                >
+                  <span className="custom-underline">Get in touch</span>
+                  <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
         
-        {/* Bottom bar */}
-        <div className="py-6 border-t border-white/10 text-sm text-gray-400">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© {currentYear} Bookham Kitchens. All rights reserved.</p>
-            <p className="mt-2 md:mt-0">
-              Designed with <span className="text-accent">♥</span> in Surrey
-            </p>
+        {/* Bottom section with copyright and utility links */}
+        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between text-gray-400 text-sm">
+          <p>&copy; {currentYear} MaxedLabs. All rights reserved.</p>
+          <div className="flex flex-wrap gap-6 mt-4 md:mt-0">
+            {utilityLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href} 
+                className="hover:text-brand-green transition-colors duration-300"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
     </footer>
   );
-} 
+};
+
+export default Footer; 
