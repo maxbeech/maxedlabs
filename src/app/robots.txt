@@ -1,0 +1,6 @@
+# Robots.txt file for MaxedLabs
+
+User-agent: *
+Allow: /
+
+Sitemap: https://maxedlabs.com/sitemap.xml 

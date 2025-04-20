@@ -134,9 +134,6 @@ const Footer = ({ links, utilityLinks }: FooterProps) => {
                 <span className="font-medium text-white">Email:</span> hello@maxedlabs.com
               </li>
               <li className="text-gray-300">
-                <span className="font-medium text-white">Phone:</span> +44 20 1234 5678
-              </li>
-              <li className="text-gray-300">
                 <span className="font-medium text-white">Location:</span> London, UK
               </li>
               <li className="mt-6">

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'MaxedLabs',
     images: [
       {
-        url: '/media/og-image.jpg',
+        url: '/media/logo.png',
         width: 1200,
         height: 630,
         alt: 'MaxedLabs',
