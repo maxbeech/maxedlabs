@@ -1,6 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // The site's canonical address is the bare domain (metadata, sitemap and
+  // robots.txt all name it), so www must send visitors there. The platform
+  // edge cannot know that; without this, www would serve a duplicate site.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.maxedlabs.com' }],
+        destination: 'https://maxedlabs.com/:path*',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {

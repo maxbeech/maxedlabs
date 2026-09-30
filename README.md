@@ -61,13 +61,14 @@ yarn dev
 
 ## Deployment
 
-This site is set up to be deployed with Vercel:
+This site is hosted on Helm7, which builds the `helm7` branch of this repository with `npm run build` and serves it with `npm start` (the port comes from `$PORT`). `www.maxedlabs.com` redirects to `maxedlabs.com`, which is the canonical address.
 
 ```bash
 npm run build
-# or
-vercel deploy
+npm start
 ```
+
+Checks: `npm run typecheck` and `npm test`.
 
 ## Adding/Modifying Content
 
